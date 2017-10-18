@@ -4,8 +4,8 @@ This is an introductory demo that shows how to leverage GCP services and cloud b
 Disaster Recovery, Scalability) to create a web application.
 
 This demo has a SOA design, using PHP for the frontend and Python in the backend. The demo web app allows users to fill out
-a short form with Name, Email, and Picture. THe picture is resized, and another page shows the resized picture of all users.
-The idea is to simulate a social media app, but the concepts are the same.
+a short form with Name, Email, and Picture. The picture is resized, and another page shows the resized picture of all users.
+The idea is to simulate a social media app, but the concepts can be applied to other examples.
 
 The app has 3 main services:
 
@@ -29,7 +29,7 @@ Intended app setup, logic, and flow:
   - Allows users to upload picture
   - Upload picture into a temp folder in GCS bucket
   - Sends a message to a PubSub topic
-    - message content: GCS object location name, email
+    - message content: GCS object location, name, email
 
 - Back End:
   - 1 or more Instance Groups (in different regions)
@@ -37,8 +37,8 @@ Intended app setup, logic, and flow:
   - Subscribe to the PubSub topic, reads the message
   - download temp picture, resizes, uploads to GCS bucket
   - create an entry in Datastore:
-    - email (as the index); name; thumbnail url; data uploaded (importante for rendering later)
-  - if everything suceeds.... acknoledge the message (removing from the PubSub topic, to avoid message to be processed again)
+    - email (as the index); name; thumbnail url; data uploaded (important for rendering later)
+  - if everything suceeds .... acknoledge the message (removing from the PubSub topic, to avoid message to be processed again)
 
 - Render:
   - 1 or more Instance Groups (in different regions)
